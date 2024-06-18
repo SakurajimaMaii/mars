@@ -41,7 +41,5 @@ android {
             proguardFile 'proguard-rules.pro'
         }
     }
-}
-
-
+    ndkVersion '20.1.5948944'
 }

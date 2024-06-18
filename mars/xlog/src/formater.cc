@@ -129,21 +129,21 @@ void log_formater(const XLoggerInfo* _info, const char* _logbody, PtrBuffer& _lo
         }
 
         // _log.AllocWrite(30*1024, false);
-        int ret = snprintf((char*)_log.PosPtr(),
-                           1024,
-                           "[%s][%s][%" PRIdMAX ", %" PRIdMAX "%s][%s][%s:%d, %s][",  // **CPPLINT SKIP**
-                           _logbody ? levelStrings[_info->level] : levelStrings[kLevelFatal],
-                           temp_time,
-                           _info->pid,
-                           _info->tid,
-                           _info->tid == _info->maintid ? "*" : "",
-                           _info->tag ? _info->tag : "",
-                           filename,
-                           _info->line,
-                           strFuncName);
-
-        assert(0 <= ret);
-        _log.Length(_log.Pos() + ret, _log.Length() + ret);
+        // 自定义日志打印内容
+        // int ret = snprintf((char*)_log.PosPtr(),
+        //                    1024,
+        //                    "[%s][%s][%" PRIdMAX ", %" PRIdMAX "%s][%s][%s:%d, %s][",  // **CPPLINT SKIP**
+        //                    _logbody ? levelStrings[_info->level] : levelStrings[kLevelFatal],
+        //                    temp_time,
+        //                    _info->pid,
+        //                    _info->tid,
+        //                    _info->tid == _info->maintid ? "*" : "",
+        //                    _info->tag ? _info->tag : "",
+        //                    filename,
+        //                    _info->line,
+        //                    strFuncName);
+        // assert(0 <= ret);
+        _log.Length(_log.Pos(), _log.Length());
         //      memcpy((char*)_log.PosPtr() + 1, "\0", 1);
 
         assert((unsigned int)_log.Pos() == _log.Length());
